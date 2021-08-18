@@ -1,0 +1,44 @@
+<h2 id="eid-header">eID-Login</h2>
+
+<table class="form-table">
+	<tr>
+		<th scope="row">{{ status }}</th>
+		<td>{{ current_status | raw }}</td>
+	</tr>
+	{% if show_disable_password_option == 1 %}
+	<tr>
+		<th scope="row">{{ labels.disable_password }}</th>
+		<td>
+			<label for="eidlogin_disable_password">
+				<input type="checkbox" id="eidlogin_disable_password" name="eidlogin_disable_password" value="true" {{ checked }} />
+				{{ labels.disable_hint }}
+			</label>
+		</td>
+	</tr>
+	{% endif %}
+	<tr>
+		<th scope="row">{{ labels.change_status }}</th>
+		<td>
+			<button id="{{ btn_identifier }}" class="eidlogin-settings-button-eid button" onclick="ask(this);" type="button">{{ change_btn_label }}</button>
+		</td>
+	</tr>
+</table>
+
+<script>
+	function ask(elem) {
+		if (elem.id == "optionAddEID") {
+			location.href = "{{ change_url }}";
+		} else {
+			if (confirm("{{ labels.confirm_msg }}")) {
+				location.href = "{{ change_url | raw }}";
+			} else {
+				return false;
+			}
+		}
+	}
+</script>
+
+<style>
+	.red { color: #ff0000 }
+	.green { color: #008917 }
+</style>

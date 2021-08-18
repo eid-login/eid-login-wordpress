@@ -1,0 +1,12 @@
+!**/.gitkeep
+*.zip
+.cache
+.php_cs.cache
+.phpdoc
+.scannerwork
+cypress/fixtures/example.json
+cypress/integration/examples
+dep
+node_modules
+phpdocs/
+vendor

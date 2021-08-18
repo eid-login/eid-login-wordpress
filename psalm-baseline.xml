@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="4.7.2@83a0325c0a95c0ab531d6b90c877068b464377b5">
+  <file src="includes/class-eidlogin-activator.php">
+    <UndefinedConstant occurrences="1">
+      <code>ABSPATH</code>
+    </UndefinedConstant>
+  </file>
+  <file src="db/class-eidlogin-continue-data.php">
+    <TooManyArguments occurrences="1">
+      <code>prepare</code>
+    </TooManyArguments>
+  </file>
+  <file src="db/class-eidlogin-response-data.php">
+    <TooManyArguments occurrences="1">
+      <code>prepare</code>
+    </TooManyArguments>
+  </file>
+  <file src="saml/class-eidlogin-saml.php">
+    <UndefinedMethod occurrences="9">
+      <code>getAttribute</code>
+      <code>getAttribute</code>
+      <code>getAttribute</code>
+      <code>getAttribute</code>
+      <code>getAttribute</code>
+      <code>getAttribute</code>
+      <code>hasAttribute</code>
+      <code>hasAttribute</code>
+      <code>hasAttribute</code>
+    </UndefinedMethod>
+  </file>
+</files>

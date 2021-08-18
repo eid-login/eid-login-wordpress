@@ -1,0 +1,184 @@
+#eidlogin-settings {
+	max-width: 1024px;
+}
+
+#eidlogin-settings-notls .notls-warning {
+	color: red;
+	font-weight: bold;
+}
+
+#eidlogin-settings .form-table th {
+	width: 220px;
+}
+
+#eidlogin-settings-msg-panel,
+#eidlogin-settings-msg-panel-prep,
+#eidlogin-settings-msg-panel-exec {
+	color: green;
+	margin-top: 5px;
+}
+
+/* taken from https://stackoverflow.com/a/32086233 */
+#eidlogin-settings nav ul {
+	padding: 0;
+	overflow: hidden;
+	display: inline-block;
+	border: 1px solid #008cd0;
+}
+
+#eidlogin-settings nav li {
+	display: inline-block;
+	margin-bottom: 0px;
+}
+
+#eidlogin-settings nav a {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	background: #eee;
+	text-decoration: none;
+	color: #008cd0;
+	padding: 3px 25px 3px 10px;
+	width: 180px;
+	text-align: center;
+}
+
+#eidlogin-settings nav a:after,
+#eidlogin-settings nav a:before {
+	position: absolute;
+	content: '';
+	height: 0;
+	width: 1px;
+	top: 50%;
+	left: -25px;
+	margin-top: -24px;
+	border: 24px solid #eee;
+	border-right: 0 !important;
+	border-left-color: transparent !important;
+}
+
+#eidlogin-settings nav a:before {
+	left: -26px;
+	border: 24px solid #f2f2f2;
+}
+
+#eidlogin-settings nav a.active {
+	cursor: default;
+	background: #008cd0;
+	color: #fff;
+}
+
+#eidlogin-settings nav a.active:after {
+	border-color: #008cd0;
+}
+
+#eidlogin-settings nav a.disabled {
+	pointer-events: none;
+	cursor: default;
+}
+
+@media (max-width: 1026px) {
+	#eidlogin-settings-wizard-panel-help img {
+		max-width: 300px;
+	}
+}
+
+#eidlogin-settings-wizard-panel-help img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#eidlogin-settings-button-help {
+	margin-top: 10px;
+	margin-left: 110px;
+	border-color: #dbdbdb !important;
+	border-radius: 60%;
+	cursor: pointer;
+}
+
+#eidlogin-settings-button-help.active {
+	background-color: #008cd0 !important;
+	color: #fff;
+}
+
+#eidlogin-settings-button-show-wizard {
+	float: right;
+	margin-top: 10px;
+}
+
+#eidlogin-settings-wizard .row {
+	margin-top: 10px;
+}
+
+#eidlogin-settings-wizard .panel {
+	border: 1px solid #008cd0;
+	padding: 0px 20px 20px 20px;
+	margin-top: 10px;
+	border-radius: 10px;
+}
+
+/* Use a decimal formatted ordered list ( (1), (2)... )  */
+#eidlogin-settings-wizard .panel ol li {
+	list-style-type: decimal;
+}
+
+#eidlogin-settings-wizard-panel-1 ol li {
+	list-style: none !important;
+	counter-increment: ov-counter;
+}
+
+#eidlogin-settings-wizard-panel-1 ol li::before {
+	content: '(' counter(ov-counter) ') ';
+	font-weight: bold;
+	margin-left: -1.5em;
+}
+
+#eidlogin-settings-wizard .btn-200 {
+	width: 200px;
+}
+
+#eidlogin-settings-wizard button {
+	border-color: #dbdbdb !important;
+}
+
+#eidlogin-settings-wizard input:not([type='checkbox']) {
+	width: 100%;
+}
+
+#eidlogin-settings-wizard textarea {
+	width: 100%;
+	height: 50em;
+}
+
+#eidlogin-settings-manual input:not([type='checkbox']) {
+	width: 50em;
+}
+
+#eidlogin-settings-manual textarea {
+	height: 28em;
+	width: 50em;
+}
+
+#eidlogin-settings-wizard pre {
+	width: 100%;
+	font-size: small;
+	white-space: pre-wrap;
+	overflow-x: auto;
+}
+
+#eidlogin-settings-wizard-steps > .row [class^='col'] {
+	margin: 0px !important;
+}
+
+#eidlogin-settings-manual-div-rollover .warning {
+	margin-top: 8px;
+	padding: 5px;
+	border-radius: 3px;
+	background-color: #eca700;
+	color: white;
+}
+
+#eidlogin-settings-manual-div-rollover hr {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}

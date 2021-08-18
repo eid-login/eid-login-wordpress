@@ -1,0 +1,36 @@
+{
+	"name": "ecsec/eid-login-wordpress",
+	"description": "The eID-Login plugin for WordPress allows to use the German eID-card and similar electronic identity documents for secure and privacy-friendly login to WordPress. For this purpose, a so-called eID-Client, such as the AusweisApp2 or the Open eCard App and eID-Service are required. In the default configuration a suitable eID-Service is provided without any additional costs.",
+	"type": "wordpress-plugin",
+	"license": "AGPL",
+	"authors": [
+		{
+			"name": "ecsec GmbH"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Ecsec\\Eidlogin\\Dep\\": "dep"
+		}
+	},
+	"require": {
+		"eid-login/php-saml": "1.0.0",
+		"twig/twig": "^3.0"
+	},
+	"require-dev": {
+		"vimeo/psalm": "^4.7",
+		"humanmade/psalm-plugin-wordpress": "^2.0",
+		"coenjacobs/mozart": "^0.7.1"
+	},
+	"extra": {
+		"mozart": {
+			"dep_namespace": "Ecsec\\Eidlogin\\Dep\\",
+			"dep_directory": "/dep/",
+			"classmap_directory": "/dep/classes/",
+			"classmap_prefix": "EE_",
+			"packages": [
+				"eid-login/php-saml"
+			]
+		}
+	}
+}

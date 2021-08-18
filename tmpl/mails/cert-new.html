@@ -1,0 +1,13 @@
+Dear {{ display_name }},
+
+the WordPress eID-Login Plugin prepared a Certificate Rollover. New certificates
+have been created and added to the SAML Metadata ({{ metadata_url }}).
+
+The currently used certificates are about to expire and remain valid until
+{{ valid_to }}. The new certificates will be activated on {{ activate_on }}.
+
+Please check, if you need to add the new certificates manually at the used
+Identity Provider!
+
+If you want to trigger the rollover manually at some earlier time, you can do
+this in the Settings page of the eID-Login Plugin.
