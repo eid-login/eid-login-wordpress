@@ -1,0 +1,25 @@
+#perso-btn-div {
+	text-align: center !important;
+	margin-bottom: 20px !important;
+}
+
+#perso-btn {
+	display: block;
+	background-image: url('../images/eID-Login.png');
+	background-repeat: no-repeat;
+	height: 26px;
+	width: 112px;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+#perso-help {
+	float: right;
+	background-image: url('../images/help-icon.png');
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+	margin-right: 45px;
+	margin-top: 7px;
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<psalm
+    errorLevel="4"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    errorBaseline="psalm-baseline.xml"
+>
+    <projectFiles>
+        <file name="eidlogin.php"/>
+        <directory name="admin"/>
+        <directory name="db"/>
+        <directory name="includes"/>
+        <directory name="saml"/>
+        <ignoreFiles>
+            <directory name="vendor"/>
+        </ignoreFiles>
+    </projectFiles>
+    <stubs>
+      <!-- Preload this file to prevent UndefinedConstant - Const xxx is not defined (see https://psalm.dev/020) -->
+      <file name="eidlogin.php" preloadClasses="true" />
+    </stubs>
+    <plugins>
+      <pluginClass class="PsalmWordPress\Plugin"/>
+    </plugins>
+</psalm>

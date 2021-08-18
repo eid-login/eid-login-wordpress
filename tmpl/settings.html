@@ -1,0 +1,547 @@
+<div id="eidlogin-settings" class="wrap eidlogin-settings">
+
+	<span id="eidlogin-settings-datasrc"
+		data-present="{{ settings_present ? 'true':'false' }}"
+		data-act_cert="{{ act_cert_present ? 'true':'false' }}"
+		data-new_cert="{{ new_cert_present ? 'true':'false' }}">
+	</span>
+
+	<div id="eidlogin-settings-notls" class="hidden">
+		<p class="notls-warning">In order to use this plugin, this domain has to use HTTPS.</p>
+	</div>
+
+	{% if wp_is_https == 1 %}
+	<div id="eidlogin-settings-wizard" class="hidden">
+
+		<h1>{{ labels.settings_eid_login }}</h1>
+
+		<div id="eidlogin-settings-wizard-steps" class="container">
+
+			<div class="row">
+				<div class="col-11">
+					<nav>
+						<ul>
+							<li><a id="eidlogin-settings-wizard-step-1" href="#" data-panel="1" class="step active">{{ labels.overview }}</a></li>
+							<li><a id="eidlogin-settings-wizard-step-2" href="#" data-panel="2" class="step">(1) {{ labels.select_idp }}</a></li>
+							<li><a id="eidlogin-settings-wizard-step-3" href="#" data-panel="3" class="step disabled">(2) {{ labels.configure_idp }}</a></li>
+							<li><a id="eidlogin-settings-wizard-step-4" href="#" data-panel="4" class="step disabled">(3) {{ labels.connect_eid }}</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-1">
+					<button id="eidlogin-settings-button-help" data-help="help" class="step button">?</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="eidlogin-settings-wizard-panel-help" class="container panel hidden">
+			<h3>{{ labels.help }}</h3>
+
+			<div class="row">
+
+				<h4>{{ labels.help_topic1 }}</h4>
+				<p>{{ labels.help_text1a | raw }}</p>
+				<p>{{ labels.help_text1b }}</p>
+				<p>{{ labels.help_text1c | raw }}</p>
+
+				<h4>{{ labels.help_topic2 }}</h4>
+				<p>{{ labels.help_text2 | raw }}</p>
+
+				<h4>{{ labels.help_topic3 }}</h4>
+				<p>{{ labels.help_text3 | raw }}</p>
+
+				<h4>{{ labels.help_topic4 }}</h4>
+				<p>{{ labels.help_text4 }}</p>
+
+			</div>
+
+			<div class="row">
+				<div class="col-6">
+					<img src="{{ images_dir }}saml-wordpress.png" alt="SAML Diagram"/>
+				</div>
+				<div class="col-6">
+					<p>{{ labels.help_text5 }}</p>
+
+					<ul>
+						<li>{{ labels.help_ul_text1 | raw }}</li>
+						<li>{{ labels.help_ul_text2 | raw }}</li>
+					</ul>
+
+					<p>{{ labels.help_text6 }}</p>
+
+					<ol>
+						<li>{{ labels.help_ol_text1 }}</li>
+						<li>{{ labels.help_ol_text2 }}</li>
+						<li>{{ labels.help_ol_text3 }}</li>
+						<li>{{ labels.help_ol_text4 }}</li>
+						<li>{{ labels.help_ol_text5 }}</li>
+					</ol>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-10"></div>
+				<div class="col-2 right">
+					<button id="eidlogin-settings-button-close-help" data-help="help" class="step button">{{ labels.close }}</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="eidlogin-settings-wizard-panel-1" class="container panel hidden">
+			<h3>{{ labels.overview }}</h3>
+
+			<div>
+				<p>{{ labels.overview_intro | raw }}</p>
+
+				<p>{{ labels.overview_hint }}</p>
+
+				<ol>
+					<li><b>{{ labels.overview_li1_topic }}</b><br>{{ labels.overview_li1_text | raw }}</li>
+					<li><b>{{ labels.overview_li2_topic }}</b><br>{{ labels.overview_li2_text | raw }}</li>
+					<li><b>{{ labels.connect_eid }}</b><br>{{ labels.overview_li3_text }}</li>
+				</ol>
+			</div>
+
+			<div class="row">
+				<div class="col-8"></div>
+				<div class="col-4">
+					<p class="right"><button id="eidlogin-settings-button-select-skid" data-panel="3" class="button btn-200">{{ labels.continue_skid }}</button></p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-8">
+					<p class="left">{{ labels.overview_hint_help }}</p>
+				</div>
+				<div class="col-4">
+					<p class="right"><button id="eidlogin-settings-button-next-2" data-panel="2" class="button btn-200">{{ labels.continue_other }}</button></p>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="container">
+			<form id="eidlogin-settings-form-wizard" action="#" method="post">
+				<div id="eidlogin-settings-wizard-panel-2" class="panel hidden">
+					<h3>{{ labels.p2_topic }}</h3>
+
+					<div class="row">
+						<p>{{ labels.p2_hint1 }}</p>
+						<p>{{ labels.p2_hint2 }}</p>
+					</div>
+
+					<div class="row">
+						<div class="col-6">
+							<label for="eidlogin-settings-form-wizard-idp_metadata_url">{{ labels.p2_idp_metadata_url }}</label>
+							<input id="eidlogin-settings-form-wizard-idp_metadata_url" name="idp_metadata_url" type="text"/>
+						</div>
+						<div class="col-6">
+							<p>{{ labels.p2_idp_metadata_url_hint }}</p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-6">
+							<label for="eidlogin-settings-form-wizard-sp_entity_id">{{ labels.p2_sp_entity_id }} *</label>
+							<input id="eidlogin-settings-form-wizard-sp_entity_id" name="sp_entity_id"
+								value="{{ sp_entity_id }}" type="text" required/>
+						</div>
+						<div class="col-6">
+							<p>{{ labels.p2_sp_entity_id_hint }}</p>
+						</div>
+					</div>
+
+					<div id="eidlogin-settings-wizard-row-sp_enforce_enc" class="row">
+						<div class="col-6">
+							<input id="eidlogin-settings-form-wizard-sp_enforce_enc" name="sp_enforce_enc" type="checkbox" class="checkbox"/>
+							<label for="eidlogin-settings-form-wizard-sp_enforce_enc">{{ labels.p2_idp_enforce_enc }}</label>
+						</div>
+						<div class="col-6"></div>
+					</div>
+
+					<div class="row">
+						<div class="col-2">
+							<p class="left"><button id="eidlogin-settings-button-back-1" data-panel="1"
+								class="button">{{ labels.back }}</button></p>
+						</div>
+						<div class="col-8">
+							<p class="center"><button id="eidlogin-settings-button-toggleidp"
+								class="button">{{ labels.p2_edit_advanced_settings }}</button></p>
+						</div>
+						<div class="col-2">
+							<p class="right"><button id="eidlogin-settings-button-next-3"
+								data-panel="3" class="button">{{ labels.next }}</button></p>
+						</div>
+					</div>
+				</div>
+
+				<div id="eidlogin-settings-wizard-panel-idp_settings" class="panel hidden">
+					<h3>{{ labels.advanced_settings }}</h3>
+
+					<div class="row">
+						<div class="col-6">
+							<label for="eidlogin-settings-form-wizard-idp_entity_id">Identity Provider EntityID *</label>
+							<input id="eidlogin-settings-form-wizard-idp_entity_id" name="idp_entity_id" type="text" required/>
+						</div>
+						<div class="col-6"></div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<label for="eidlogin-settings-form-wizard-idp_sso_url">Identity Provider Single Sign-On URL *</label>
+							<input id="eidlogin-settings-form-wizard-idp_sso_url" name="idp_sso_url" type="text" required/>
+						</div>
+						<div class="col-6">
+							<p>{{ labels.idp_sso_hint }}</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<label for="eidlogin-settings-form-wizard-idp_cert_sign">{{ labels.idp_cert_sign }} *</label>
+							<textarea id="eidlogin-settings-form-wizard-idp_cert_sign" name="idp_cert_sign" required></textarea>
+						</div>
+						<div class="col-6">
+							<p>{{ labels.idp_cert_sign_hint }}</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<label for="eidlogin-settings-form-wizard-idp_cert_enc">{{ labels.idp_cert_enc }}</label>
+							<textarea id="eidlogin-settings-form-wizard-idp_cert_enc" name="idp_cert_enc" required></textarea>
+						</div>
+						<div class="col-6">
+							<p>{{ labels.idp_cert_enc_hint }}</p>
+						</div>
+					</div>
+					<div id="eidlogin-settings-wizard-row-idp_ext_tr03130" class="row">
+						<div class="col-6">
+							<label for="eidlogin-settings-form-wizard-idp_ext_tr03130">{{ labels.idp_ext_tr03130 }}</label>
+							<textarea id="eidlogin-settings-form-wizard-idp_ext_tr03130" name="idp_ext_tr03130"
+								placeholder="{{ tr03130_placeholder }}">{{ idp_ext_tr03130 }}</textarea>
+						</div>
+						<div class="col-6">
+							<p>{{ labels.idp_ext_tr03130_hint | raw }}</p>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div id="eidlogin-settings-wizard-panel-3" class="panel hidden">
+			<h3>Identity Provider</h3>
+
+			<p>{{ labels.p3_hint }}</p>
+
+			<div class="row">
+				<div class="col-6" id="eidlogin-settings-skid-cell-1">
+					<p class="left">{{ labels.p3_skid_hint }}</p>
+				</div>
+				<div class="col-6" id="eidlogin-settings-skid-cell-2">
+					<p class="center"><button id="eidlogin-settings-button-skid" class="button">{{ labels.p3_open_skid }}</button></p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-6">
+					Service Provider EntityID
+				</div>
+				<div class="col-6">
+					<b><pre><span id="eidlogin-settings-wizard-display-sp_entity_id">{{ sp_entity_id }}</span></pre></b>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-6">
+					Service Provider Assertion Consumer URL (ACS URL)
+				</div>
+				<div class="col-6">
+					<b><pre>{{ acs_url }}</pre></b>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-6">
+					Service Provider Metadata URL
+				</div>
+				<div class="col-6">
+					<b><pre>{{ metadata_url }}</pre></b>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-2">
+					<p class="left"><button id="eidlogin-settings-button-back-2" data-panel="2"
+						class="button">{{ labels.back }}</button></p>
+				</div>
+				<div class="col-8">
+					<p class="center">
+						<!-- Label is set dynamically via JavaScript. -->
+						<button id="eidlogin-settings-button-togglesp" class="button"></button>
+					</p>
+				</div>
+				<div class="col-2">
+					<p class="right"><button id="eidlogin-settings-button-next-4"
+						data-panel="4" class="button">{{ labels.next }}</button></p>
+				</div>
+			</div>
+
+		</div>
+
+		<div id="eidlogin-settings-wizard-panel-register-sp" class="panel hidden">
+			<h3>Service Provider Metadata</h3>
+			<p>{{ labels.p3_sp_metadata_hint }} {{ metadata_url }}.</p>
+			<div class="row">
+				<div class="col-12">
+					<pre lang="xml" id="eidlogin-settings-wizard-panel-register-sp-metadata"></pre>
+				</div>
+			</div>
+		</div>
+
+		<div id="eidlogin-settings-wizard-panel-4" class="panel hidden">
+			<h3>{{ labels.connect_eid }}</h3>
+
+			<p>{{ labels.connect_eid_hint1 | raw }}</p>
+
+			<p class="center">
+				<img src="{{ images_dir }}login-screenshot.png" alt="Screenshot of WordPress login page"/>
+			</p>
+
+			<p>{{ labels.connect_eid_hint2 }}</p>
+
+			<p>{{ labels.connect_eid_hint3 | raw }}</p>
+
+			<div class="row">
+				<div class="col-12 right">
+					<button id="eidlogin-settings-button-eid-create" class="button btn-200">{{ labels.connect_eid_button }}</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-1 left">
+					<button id="eidlogin-settings-button-back-3" class="button" data-panel="3">{{ labels.back }}</button>
+				</div>
+				<div class="col-7"></div>
+				<div class="col-4 right">
+					<button id="eidlogin-settings-button-finish" class="button btn-200">{{ labels.connect_finish_wizard }}</button>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- ./eidlogin-settings-wizard -->
+	</div>
+
+	<div id="eidlogin-settings-manual" class="hidden">
+
+		<input id="eidlogin-settings-form-manual-eid_delete" name="eid_delete" value="false" type="hidden">
+
+		<h1>eID-Login</h1>
+
+		<form id="eidlogin-settings-form-manual" action="#" method="post">
+
+			<div id="eidlogin-settings-manual-sp">
+
+				<p>{{ labels.manual_activated_hint }}</p>
+
+				<table class="form-table" role="presentation">
+					<tr>
+						<th scope="row"><label for="eidlogin-settings-form-manual-activated">{{ labels.manual_activated }}</label></th>
+						<td>
+							<input type="checkbox" id="eidlogin-settings-form-manual-activated" name="activated" {{ activated_checked }}>
+						</td>
+					</tr>
+				</table>
+
+				<p>{{ labels.manual_required_hint }}</p>
+
+				<h3>{{ labels.manual_sp_settings }}</h3>
+
+				<table class="form-table" role="presentation">
+					<tr>
+						<th scope="row"><label for="eidlogin-settings-form-manual-sp_entity_id">Service Provider EntityID *</label></th>
+						<td>
+							<input type="text" class="regular-text" required="required" aria-required="true"
+								id="eidlogin-settings-form-manual-sp_entity_id" name="sp_entity_id" value="{{ eidlogin_options.sp_entity_id }}">
+							<p class="description" id="tagline-description">{{ labels.manual_entity_id_hint }}</p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="eidlogin-settings-form-manual-sp_acs_url">Assertion Consumer URL</label></th>
+						<td>
+							<input type="text" class="regular-text" readonly
+								id="eidlogin-settings-form-manual-sp_acs_url" name="sp_acs_url" value="{{ acs_url }}">
+							<p class="description" id="tagline-description">{{ labels.manual_acs_hint }}</p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="eidlogin-settings-form-manual-sp_metadata_url">{{ labels.manual_metadata }}</label></th>
+						<td>
+							<input type="text" class="regular-text" readonly
+								id="eidlogin-settings-form-manual-sp_metadata_url" name="sp_acs_url" value="{{ metadata_url }}">
+							<p class="description" id="tagline-description">{{ labels.manual_metadata_hint }}</p>
+						</td>
+					</tr>
+
+					<tr id="eidlogin-settings-manual-div-sp_enforce_enc">
+						<th scope="row"><label for="eidlogin-settings-form-manual-sp_enforce_enc">{{ labels.manual_enforce_enc }}</label></th>
+						<td>
+							<input type="checkbox" id="eidlogin-settings-form-manual-sp_enforce_enc" name="sp_enforce_enc" {{ enforce_enc_checked }}>
+							<p>{{ labels.manual_enforce_enc_hint }}</p>
+						</td>
+					</tr>
+
+				</table>
+
+			</div>
+
+			<div id="eidlogin-settings-manual-idp">
+				<h3>{{ labels.manual_idp_settings }}</h3>
+
+				<table class="form-table" role="presentation">
+					<tr>
+						<th scope="row"><label for="eidlogin-settings-form-manual-idp_entity_id">{{ labels.manual_idp_entity_id }} *</label></th>
+						<td>
+							<input type="text" class="regular-text" required="required" aria-required="true"
+								id="eidlogin-settings-form-manual-idp_entity_id" name="idp_entity_id"
+								value="{{ eidlogin_options.idp_entity_id }}">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="eidlogin-settings-form-manual-idp_sso_url">Identity Provider Single Sign-On URL *</label></th>
+						<td>
+							<input type="url" class="regular-text" required="required" aria-required="true" pattern="https://.*"
+								id="eidlogin-settings-form-manual-idp_sso_url" name="idp_sso_url"
+								value="{{ eidlogin_options.idp_sso_url }}">
+							<p class="description" id="tagline-description">{{ labels.manual_idp_sso_hint }}</p>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row"><label for="eidlogin-settings-form-manual-idp_cert_sign">{{ labels.idp_cert_sign }} *</label></th>
+						<td>
+							<textarea class="large-text" rows="5" required="required" aria-required="true"
+								id="eidlogin-settings-form-manual-idp_cert_sign"
+								name="idp_cert_sign">{{ eidlogin_options.idp_cert_sign }}</textarea>
+							<p class="description" id="tagline-description">{{ labels.idp_cert_sign_hint }}</p>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row"><label for="eidlogin-settings-form-manual-idp_cert_enc">{{ labels.idp_cert_enc }}</label></th>
+						<td>
+							<textarea class="large-text" rows="5" required="required" aria-required="true"
+								id="eidlogin-settings-form-manual-idp_cert_enc"
+								name="idp_cert_enc">{{ eidlogin_options.idp_cert_enc }}</textarea>
+							<p class="description" id="tagline-description">{{ labels.idp_cert_enc_hint }}</p>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row"><label for="eidlogin-settings-form-manual-idp_ext_tr03130">{{ labels.idp_ext_tr03130 }}</label></th>
+						<td>
+							<textarea class="large-text" rows="5" id="eidlogin-settings-form-manual-idp_ext_tr03130"
+								placeholder="{{ tr03130_placeholder }}" name="idp_ext_tr03130">{{ eidlogin_options.idp_ext_tr03130 | raw }}</textarea>
+							<p class="description" id="tagline-description">{{ labels.idp_ext_tr03130_hint | raw }}</p>
+						</td>
+					</tr>
+
+				</table>
+
+			</div>
+
+			<div class="row">
+				<div class="col-5">
+					<button id="eidlogin-settings-button-manual-save" class="button button-primary">{{ labels.save }}</button>
+					<button id="eidlogin-settings-button-reset" class="button">{{ labels.reset }}</button>
+				</div>
+				<div class="col-7">
+					<div id="eidlogin-settings-msg-panel" class="hidden"></div>
+				</div>
+			</div>
+
+			<div id="eidlogin-settings-manual-div-rollover" class="hidden">
+
+				<hr>
+
+				<h3>{{ labels.cert_rollover }}</h3>
+
+				<p class="warning">{{ labels.cert_rollover_status | format(valid_days) }}</p>
+
+				<h4>{{ labels.cert_current }}</h4>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-2"></div>
+						<div class="col-5">{{ labels.cert_rollover_cert_active }}</div>
+						<div class="col-5">{{ labels.cert_rollover_cert_new }}</div>
+					</div>
+					<div class="row">
+						<div class="col-2">{{ labels.cert_rollover_sig }}</div>
+						<div id="eidlogin-settings-manual-div-cert-act" class="col-5">
+							{{ ["... ", act_cert] | join }}
+						</div>
+						<div id="eidlogin-settings-manual-div-cert-new" class="col-5">
+							{% if new_cert_present == 'true' %}
+								{{ ["... ", new_cert] | join }}
+							{% else %}
+								{{ labels.cert_rollover_no_cert }}
+							{% endif %}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-2">{{ labels.cert_rollover_enc }}</div>
+						<div id="eidlogin-settings-manual-div-cert-act-enc" class="col-5">
+							{{ ["... ", act_cert_enc] | join }}
+						</div>
+						<div id="eidlogin-settings-manual-div-cert-new-enc" class="col-5">
+							{% if new_cert_present == 'true' %}
+								{{ ["... ", new_cert_enc] | join }}
+							{% else %}
+								{{ labels.cert_rollover_no_cert }}
+							{% endif %}
+						</div>
+					</div>
+				</div>
+
+				<h4>{{ labels.cert_manual }}</h4>
+
+				<p><b><i>(1) {{ labels.cert_preparation }}</i></b></p>
+
+				<p>{{ labels.cert_prep_hint1 | raw }}</p>
+				<p>{{ labels.cert_prep_hint2 }}</p>
+
+				<div class="row">
+					<div class="col-5">
+						<button id="eidlogin-settings-button-rollover-prepare" class="button">{{ labels.cert_rollover_prepare }}</button>
+					</div>
+					<div class="col-7">
+						<div id="eidlogin-settings-msg-panel-prep" class="hidden"></div>
+					</div>
+				</div>
+
+				<p><b><i>(2) {{ labels.cert_activation }}</i></b></p>
+
+				<p>{{ labels.cert_rollover_hint1 }}</p>
+
+				<p class="warning">{{ labels.cert_rollover_caution }}</p>
+
+				<div class="row">
+					<div class="col-5">
+						<button disabled id="eidlogin-settings-button-rollover-execute" class="button">{{ labels.cert_rollover_execute }}</button>
+					</div>
+					<div class="col-7">
+						<div id="eidlogin-settings-msg-panel-exec" class="hidden"></div>
+					</div>
+				</div>
+
+				<p><span class="warning" id="eidlogin-settings-span-rollover-execute">{{ labels.cert_rollover_hint2 }}</span></p>
+
+			</div>
+
+		</form>
+
+		<!-- ./eidlogin-settings-manual -->
+	</div>
+	{% endif %}
+
+<!-- ./eidlogin-settings -->
+</div>

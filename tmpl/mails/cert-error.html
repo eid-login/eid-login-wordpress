@@ -1,0 +1,18 @@
+Dear {{ display_name }},
+
+The certificate cronjob of the WordPress eID-Login Plugin returned an error:
+
+{{ error }}
+
+{% if msg is not empty %}
+{{ msg }}
+{% endif %}
+
+This certificates shall be used for signing and encryption of SAML data. The
+currently used certificates are valid until {{ valid_to }}. Please check the
+logs of your WordPress instance!
+
+You can create and activate new certificates manually in the settings of the
+eID-Login Plugin when the cause of the error is fixed.
+
+The cronjob has been deactivated!
