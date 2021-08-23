@@ -28,8 +28,7 @@ At the Identity Provider your WordPress instance, which serves as Service Provid
 In order to use a German eID ("Personalausweis") or another eID for the login at WordPress, the eID must be connected to an user account.
 
 == Frequently Asked Questions ==
-A list of Frequently Asked Questions (in German language) can be found [on the
-homepage](https://eid.services/help.html).
+A list of Frequently Asked Questions (in German language) can be found [on the homepage](https://eid.services/help.html).
 
 == Screenshots ==
 1. Overview over the concept of the eID-Login.
