@@ -11,7 +11,8 @@ rm eidlogin.zip
 rm -rf ./vendor/
 
 composer install --optimize-autoloader --no-dev
-vendor/bin/mozart compose
+# Required: composer global require coenjacobs/mozart
+~/.config/composer/vendor/bin/mozart compose
 composer dump-autoload
 
 zip -r eidlogin.zip ./ \
