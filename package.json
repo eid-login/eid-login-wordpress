@@ -8,9 +8,9 @@
     "node": ">=10.0.0"
   },
   "devDependencies": {
-    "cypress": "^8.2.0",
-    "cypress-wait-until": "^1.7.1",
-    "fast-xml-parser": "^3.17.4",
-    "mysql2": "^2.2.5"
+    "cypress": "^8.7.0",
+    "cypress-wait-until": "^1.7.2",
+    "fast-xml-parser": "^3.21.1",
+    "mysql2": "^2.3.3"
   }
 }
