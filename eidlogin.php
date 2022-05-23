@@ -3,7 +3,7 @@
  * Plugin Name: eID-Login
  * Plugin URI: https://eid.services/eidlogin/wordpress
  * Description: The eID-Login plugin allows to use the German eID-card and similar electronic identity documents for <strong>secure and privacy-friendly login</strong> to WordPress. For this purpose, a so-called eID-Client, such as the AusweisApp2 or the Open eCard App and eID-Service are required. In the default configuration a suitable eID-Service is provided without any additional costs.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires at least: 5.7
  * Requires PHP: 7.3
  * Author: ecsec GmbH
@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 // EIDLOGIN_PLUGIN_VERSION is the current version of the plugin. It has to be
 // in sync with the version number in the header.
-define( 'EIDLOGIN_PLUGIN_VERSION', '1.0.0' );
+define( 'EIDLOGIN_PLUGIN_VERSION', '1.0.1' );
 // EIDLOGIN_OPTION_NAME is the name of the options in table 'wp_options'.
 define( 'EIDLOGIN_OPTION_NAME', 'eidlogin_options' );
 // EIDLOGIN_VERSION_NAME is the name of the version in table 'wp_options'.
