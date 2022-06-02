@@ -14,7 +14,7 @@ The eID-Login plugin offers an alternative login to WordPress, using an electron
 The eID-Login plugin allows to use the German eID-card and similar electronic identity documents for secure and privacy-friendly login to WordPress. For this purpose, a so-called eID-Client, such as the AusweisApp2 or the Open eCard App and eID-Service are required. In the default configuration a suitable eID-Service is provided without any additional costs.
 
 == Installation ==
-The plugin can be installed like every other WordPress plugin, which means directly from within the WordPress instance or via [download](https://wordpress.org/plugins/eidlogin/).
+The plugin can be installed like every other WordPress plugin, which means directly from within the WordPress instance or via download.
 
 For the configuration, a wizard with an integrated help section guides you through the different steps.
 
