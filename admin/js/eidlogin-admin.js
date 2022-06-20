@@ -29,7 +29,7 @@ var debounce = function (func, wait) {
 
 document.addEventListener('DOMContentLoaded', function (e) {
 	// The text domain must not be passed as a variable!
-	const { __, _x, _n, _nx, sprintf } = wp.i18n;
+	const { __, _x, _n, _nx } = wp.i18n;
 
 	if (window.location.protocol !== 'https:') {
 		document.getElementById('eidlogin-settings-notls').classList.remove('hidden');
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
 	 */
 	function openSkid(event) {
 		event.preventDefault();
-		window.open('https://sp.skidentity.de/', '_blank');
+		window.open(skidManagementUrl,'_blank');
 	}
 	document.getElementById('eidlogin-settings-button-skid').addEventListener('click', openSkid);
 
@@ -456,7 +456,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
 		// window.location.host doesn't work here if WP is installed in a sub-directory.
 		// Use the base URL of the REST API instead (https://example.com/wordpress/index.php/wp-json/).
 		let wproot = wpApiSettings.root;
-		pos = wproot.indexOf('index');
+		let pos = wproot.indexOf('index');
 		wproot = wproot.substring(0, pos);
 		wproot += 'wp-login.php?saml_register';
 		window.location.href = wproot;
