@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "49d85e64f237333562f8d38aaf8a6234",
+    "content-hash": "3219db2c8fe2b4a261afdb06b5057c04",
     "packages": [
         {
             "name": "eid-login/php-saml",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eid-login/php-saml.git",
-                "reference": "2dd951f12384cecee12d2a840891aacc75f154af"
+                "reference": "866947c69704d0fba5523fbc03cf1fbde6a15597"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eid-login/php-saml/zipball/2dd951f12384cecee12d2a840891aacc75f154af",
-                "reference": "2dd951f12384cecee12d2a840891aacc75f154af",
+                "url": "https://api.github.com/repos/eid-login/php-saml/zipball/866947c69704d0fba5523fbc03cf1fbde6a15597",
+                "reference": "866947c69704d0fba5523fbc03cf1fbde6a15597",
                 "shasum": ""
             },
             "require": {
@@ -56,11 +56,11 @@
                 "saml"
             ],
             "support": {
-                "email": "sixto.garcia@onelogin.com",
+                "email": "eID-Login@ecsec.de",
                 "issues": "https://github.com/eid-login/php-saml/issues",
                 "source": "https://github.com/eid-login/php-saml/"
             },
-            "time": "2021-06-04T09:30:26+00:00"
+            "time": "2021-12-13T14:10:01+00:00"
         },
         {
             "name": "eid-login/xmlseclibs",
@@ -375,16 +375,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.3.8",
+            "version": "v3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "972d8604a92b7054828b539f2febb0211dd5945c"
+                "reference": "e939eae92386b69b49cfa4599dd9bead6bf4a342"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/972d8604a92b7054828b539f2febb0211dd5945c",
-                "reference": "972d8604a92b7054828b539f2febb0211dd5945c",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e939eae92386b69b49cfa4599dd9bead6bf4a342",
+                "reference": "e939eae92386b69b49cfa4599dd9bead6bf4a342",
                 "shasum": ""
             },
             "require": {
@@ -399,7 +399,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.3-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -435,7 +435,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.3.8"
+                "source": "https://github.com/twigphp/Twig/tree/v3.4.1"
             },
             "funding": [
                 {
@@ -447,7 +447,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-02-04T06:59:48+00:00"
+            "time": "2022-05-17T05:48:52+00:00"
         }
     ],
     "packages-dev": [
