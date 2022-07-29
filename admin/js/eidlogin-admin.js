@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', function (e) {
 	 */
 	function switchWizardPanel(panel) {
 		panel = parseInt(panel);
-		buttonToggleIdp.innerHTML = txtShowIdp;
-		buttonToggleSp.innerHTML = txtShowSp;
+		buttonToggleIdp.innerText = txtShowIdp;
+		buttonToggleSp.innerText = txtShowSp;
 
 		let steps = wizard.getElementsByClassName('step');
 		[].forEach.call(steps, function (step) {
@@ -249,10 +249,10 @@ document.addEventListener('DOMContentLoaded', function (e) {
 		const panelIdpSettings = document.getElementById('eidlogin-settings-wizard-panel-idp_settings');
 		if (panelIdpSettings.classList.contains('hidden')) {
 			panelIdpSettings.classList.remove('hidden');
-			buttonToggleIdp.innerHTML = txtHideIdp;
+			buttonToggleIdp.innerText = txtHideIdp;
 		} else {
 			panelIdpSettings.classList.add('hidden');
-			buttonToggleIdp.innerHTML = txtShowIdp;
+			buttonToggleIdp.innerText = txtShowIdp;
 		}
 	}
 	buttonToggleIdp.addEventListener('click', toggleIdp);
@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
 
 			if (e.target.status == 200 && resp.status == 'success') {
 				msgPanel.classList.remove('hidden');
-				msgPanel.innerHTML = resp.message;
+				msgPanel.innerText = resp.message;
 				setTimeout(function () {
 					msgPanel.classList.add('hidden');
 				}, msgDuration);
@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
 					let value = document.getElementById('eidlogin-settings-form-wizard-sp_entity_id').value;
 					document.getElementById(
 						'eidlogin-settings-wizard-display-sp_entity_id'
-					).innerHTML = value;
+					).innerText = value;
 
 					// Hide the skid button and it`s text, if we don't have skid as configured idp.
 					if (inputMetaIdp.value === skidMetadataUrl) {
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
 					var spMetadataPre = document.getElementById(
 						'eidlogin-settings-wizard-panel-register-sp-metadata'
 					);
-					spMetadataPre.innerHTML = '';
+					spMetadataPre.innerText = '';
 					spMetadataPre.appendChild(document.createTextNode(spMetadata));
 				} else {
 					showError(errMsg);
@@ -442,10 +442,10 @@ document.addEventListener('DOMContentLoaded', function (e) {
 			xhr.setRequestHeader('X-WP-Nonce', wpApiSettings.nonce);
 			xhr.send();
 
-			buttonToggleSp.innerHTML = txtHideSp;
+			buttonToggleSp.innerText = txtHideSp;
 			spPanel.classList.remove('hidden');
 		} else {
-			buttonToggleSp.innerHTML = txtShowSp;
+			buttonToggleSp.innerText = txtShowSp;
 			spPanel.classList.add('hidden');
 		}
 	}
@@ -510,7 +510,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
 				let resp = JSON.parse(e.target.responseText);
 				if (e.target.status == 200 && resp.status == 'success') {
 					msgPanel.classList.remove('hidden');
-					msgPanel.innerHTML = resp.message;
+					msgPanel.innerText = resp.message;
 					setTimeout(function () {
 						msgPanel.classList.add('hidden');
 						window.location.reload();
@@ -564,13 +564,13 @@ document.addEventListener('DOMContentLoaded', function (e) {
 			xhr.addEventListener('load', (e) => {
 				let resp = JSON.parse(e.target.responseText);
 				if (e.target.status == 200 && resp.status == 'success') {
-					certNewDiv.innerHTML = '... ' + resp.cert_new;
-					certNewEncDiv.innerHTML = '... ' + resp.cert_new_enc;
+					certNewDiv.innerText = '... ' + resp.cert_new;
+					certNewEncDiv.innerText = '... ' + resp.cert_new_enc;
 					buttonRolloverExec.disabled = false;
 					spanRolloverExec.classList.add('hidden');
 
 					msgPanelPrep.classList.remove('hidden');
-					msgPanelPrep.innerHTML = resp.message;
+					msgPanelPrep.innerText = resp.message;
 					setTimeout(function () {
 						msgPanelPrep.classList.add('hidden');
 					}, msgDuration);
@@ -611,16 +611,16 @@ document.addEventListener('DOMContentLoaded', function (e) {
 			xhr.addEventListener('load', (e) => {
 				let resp = JSON.parse(e.target.responseText);
 				if (e.target.status == 200 && resp.status == 'success') {
-					certActDiv.innerHTML = '... ' + resp.cert_act;
-					certActEncDiv.innerHTML = '... ' + resp.cert_act_enc;
-					certNewDiv.innerHTML = __('No new certificate prepared yet.', 'eidlogin');
-					certNewEncDiv.innerHTML = __('No new certificate prepared yet.', 'eidlogin');
+					certActDiv.innerText = '... ' + resp.cert_act;
+					certActEncDiv.innerText = '... ' + resp.cert_act_enc;
+					certNewDiv.innerText = __('No new certificate prepared yet.', 'eidlogin');
+					certNewEncDiv.innerText = __('No new certificate prepared yet.', 'eidlogin');
 
 					buttonRolloverExec.disabled = true;
 					spanRolloverExec.classList.remove('hidden');
 
 					msgPanelExec.classList.remove('hidden');
-					msgPanelExec.innerHTML = resp.message;
+					msgPanelExec.innerText = resp.message;
 					setTimeout(function () {
 						msgPanelExec.classList.add('hidden');
 					}, msgDuration);
