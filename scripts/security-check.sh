@@ -27,4 +27,4 @@ else
 fi
 
 # Checks for JavaScript packages with known security vulnerabilities.
-npm audit --production
+npm audit --omit=dev

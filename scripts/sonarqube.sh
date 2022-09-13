@@ -11,7 +11,9 @@ cd "$ROOT" || exit 1
 docker ps | grep sonarqube
 status=$?
 if [[ $status != 0 ]]; then
-	echo "Sonarqube container is not running"
+	echo "Sonarqube container is not running. Run:"
+	echo "docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest"
+	echo "On the first login, use admin:admin, change the password, use 'eid-login-wordpress' as projectKey and generate a token."
 	exit 1
 fi
 
