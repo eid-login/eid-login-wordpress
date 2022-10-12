@@ -15,7 +15,7 @@
 	},
 	"require": {
 		"eid-login/php-saml": "1.1.0",
-		"twig/twig": "v3.4.1"
+		"twig/twig": "^3.4"
 	},
 	"require-dev": {
 		"vimeo/psalm": "^4.7",
