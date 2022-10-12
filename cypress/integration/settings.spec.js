@@ -43,29 +43,13 @@ describe('Test admin related eID settings', () => {
 			cy.wrap(ssoDesc[nsSecond + ':SingleSignOnService'][0]['@_Location']).as('idp_sso_url');
 			var keyDesc = ssoDesc[nsSecond + ':KeyDescriptor'];
 
-			var nsThird = '';
 			Object.keys(keyDesc).forEach((key) => {
+				// Since 2022, KeyInfo & Co. are not namespaced anymore in the metadata.
 				if (keyDesc[key]['@_use'] == 'signing') {
-					Object.keys(keyDesc[key]).forEach((key2) => {
-						var match = key2.match('.*(?=:)');
-						if (match != null) {
-							nsThird = match[0];
-							return;
-						}
-					});
-				}
-			});
-
-			Object.keys(keyDesc).forEach((key) => {
-				if (keyDesc[key]['@_use'] == 'signing') {
-					cy.wrap(
-						keyDesc[key][nsThird + ':KeyInfo'][nsThird + ':X509Data'][nsThird + ':X509Certificate']
-					).as('idp_cert_sign');
+					cy.wrap(keyDesc[key].KeyInfo.X509Data.X509Certificate).as('idp_cert_sign');
 				}
 				if (keyDesc[key]['@_use'] == 'encryption') {
-					cy.wrap(
-						keyDesc[key][nsThird + ':KeyInfo'][nsThird + ':X509Data'][nsThird + ':X509Certificate']
-					).as('idp_cert_enc');
+					cy.wrap(keyDesc[key].KeyInfo.X509Data.X509Certificate).as('idp_cert_enc');
 				}
 			});
 		});
@@ -322,9 +306,7 @@ describe('Test admin related eID settings', () => {
 
 		// Filling idp_cert_sign with 1024 bit cert and check next error message.
 		cy.get(`${prefix}form-manual-idp_cert_sign`).clear();
-		cy.get(
-			`${prefix}form-manual-idp_cert_sign`
-		).type(
+		cy.get(`${prefix}form-manual-idp_cert_sign`).type(
 			'MIIBKTCB1KADAgECAgRglScoMA0GCSqGSIb3DQEBCwUAMBwxGjAYBgNVBAMMEXRlc3QtY2VydCByc2EgNTEyMB4XDTIxMDUwNzExNDAyNFoXDTIyMDUwNzExNDAyNFowHDEaMBgGA1UEAwwRdGVzdC1jZXJ0IHJzYSA1MTIwXDANBgkqhkiG9w0BAQEFAANLADBIAkEA0LP4k6cbOL1xSs432wj9YB/TB3BkO7j7fxelkqJZNPTtWrMlj1L+3qpPAuGdhXkj689o38Rbk9yOpqq4FlN11QIDAQABMA0GCSqGSIb3DQEBCwUAA0EAo1xf6bJSmcBB9Q2URr7DM22GPeykJGwmAltR3nBeXvauzbS4syF+/cjVzEO+t8wCo+Ws7tfvcLCocUp+cOVZNQ==',
 			{ delay: 1 }
 		);
@@ -339,9 +321,7 @@ describe('Test admin related eID settings', () => {
 
 		// Filling idp_cert_sign correctly and check next error message.
 		cy.get(`${prefix}form-manual-idp_cert_sign`).clear();
-		cy.get(
-			`${prefix}form-manual-idp_cert_sign`
-		).type(
+		cy.get(`${prefix}form-manual-idp_cert_sign`).type(
 			'MIIFlzCCA3+gAwIBAgIINK3wkhEt4oowDQYJKoZIhvcNAQELBQAwYzELMAkGA1UEBhMCREUxDzANBgNVBAgTBkJheWVybjERMA8GA1UEBxMITWljaGVsYXUxEzARBgNVBAoTCmVjc2VjIEdtYkgxGzAZBgNVBAMTElNrSURlbnRpdHkgU0FNTCBGUzAeFw0yMTEyMTMxMDAwMDBaFw0yNDAyMTMxMDAwMDBaMGMxCzAJBgNVBAYTAkRFMQ8wDQYDVQQIEwZCYXllcm4xETAPBgNVBAcTCE1pY2hlbGF1MRMwEQYDVQQKEwplY3NlYyBHbWJIMRswGQYDVQQDExJTa0lEZW50aXR5IFNBTUwgRlMwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCgSraq4/BaSD+8tPKKsez/Uk6FZ2c4cxSzjvcZptVPo7IH2cdLRKnlVfVgLPoeV+MOL/viu1y6IPp6aEJ09vl/7V0P5oEZ9BJ41K6DVsBb/puiFOC/Ma6Q53DbHbZQJJdGPmX1RH297e420iYs19zH7Y98X+ZTVOlOIxc26/yubc6XiMPvGzIv5BsHYzfyLFdapV/PTj21BDUmhas/H83zJP1IGdurJOt8/u7T1Mg2haLlU+Vp1xdeSaZgk+iesRyIB3Y774s6jqavxkit9PHk+Qq166sW2NOQLtb/BR/1aVK5rvvQqrZ0cLnk2jCFyDht4kZ7O6T5C0seQXDOGKHacv6neqfLu+4lWOTpZk/ANrbd8d2oG98k8lc5j2agVC7PjM0lTRoEMedTfG7J4q4mgSKhlL+YrRhIb/nYUSScn0EiAr32YSb5caboT3+eiqXnzAqVbH/wtwXIpbTkgQEwlk6A/TkDhv9+ssDv75k4PUKWmFjUKrC/TUQmC5k8TXvO40NX2cGOVimTavN1fSe1Pj1ytmQXRrbfrKiNwz+EbhAJHTdkEHh40XwjJh2jvwSSctvs3vpVIAtX4FPtHTOraBCZyyH0X/1vtKRruY2VzO8kAeU2Zb4NWE2STmFSXbIG9Pyci9eqdtd5nr3GaPj4g8BabcmMweOJRWwqm8F3fwIDAQABo08wTTAdBgNVHQ4EFgQUPSTV0I2z0mB0eJ/2JPvLPb4UVxswHwYDVR0jBBgwFoAUPSTV0I2z0mB0eJ/2JPvLPb4UVxswCwYDVR0PBAQDAgSQMA0GCSqGSIb3DQEBCwUAA4ICAQBWc4IQBece9ZXmkEe1SXGkg3ZqWNNJlkO4LuJOyDudLLPebjAM9JLBl1MY4Fnn9j2+ZeJHP9JRp4Igw49lGEI6KX/oGeDr+VfxHdRQ4mHs54JUKDcUef10xwlZ0sxX7bStNXtKOfMsaftwS/UfbjqawCQxXWMRONDMJVZXDE1ZrgvVC2/547AXJX93HtfTTPj8o3doEIF6IOBS9bjRZ6GUilzePsj3OaTbbGRHlGvxrBXmzZljF0wVmcBm6VneP0Ltap09Wwj2DI5n3PFGze4ufAj2UvkoJAlmOqnDKMcCMt8km9TkZtO1HtePCRj6n/FYWU33FB78gt1ZNrsYSWHAuco1irYUBg9wi6pJ/tJ4VwBk1astVrKTrJvMrvSIQeAzOhQ4DN+Rmv3CPvDshlrNxgC6HGvymSaOLRLX0gS0FbJmYgriXpy6AzSIkNqP4Fl9wT7MY0wYE3/bTuDO2Q/DcFif0AVn8AZHr9jM1H8SzzykkHgNvMQi1bHOv34WK6pYfuCD8/5f/OHf1LBADX5BHdu69vN9kc0LBdreLEysuqCTXTLov2h8osupsM1MDPrglm82PCJVcQ0zpwIBJiV7weDPqmibMqo7zDHRvFfrdqsfqVDdpwEex17kmqV+hYgufB4+uAr7E/crGd0YTv+SmySz1zxeoSZJn+f7cIfYFw==',
 			{ delay: 1 }
 		);
@@ -359,9 +339,7 @@ describe('Test admin related eID settings', () => {
 
 		// Filling idp_cert_enc with 1024 bit cert and check next error message.
 		cy.get(`${prefix}form-manual-idp_cert_enc`).clear();
-		cy.get(
-			`${prefix}form-manual-idp_cert_enc`
-		).type(
+		cy.get(`${prefix}form-manual-idp_cert_enc`).type(
 			'MIIBKTCB1KADAgECAgRglScoMA0GCSqGSIb3DQEBCwUAMBwxGjAYBgNVBAMMEXRlc3QtY2VydCByc2EgNTEyMB4XDTIxMDUwNzExNDAyNFoXDTIyMDUwNzExNDAyNFowHDEaMBgGA1UEAwwRdGVzdC1jZXJ0IHJzYSA1MTIwXDANBgkqhkiG9w0BAQEFAANLADBIAkEA0LP4k6cbOL1xSs432wj9YB/TB3BkO7j7fxelkqJZNPTtWrMlj1L+3qpPAuGdhXkj689o38Rbk9yOpqq4FlN11QIDAQABMA0GCSqGSIb3DQEBCwUAA0EAo1xf6bJSmcBB9Q2URr7DM22GPeykJGwmAltR3nBeXvauzbS4syF+/cjVzEO+t8wCo+Ws7tfvcLCocUp+cOVZNQ==',
 			{ delay: 1 }
 		);
@@ -376,9 +354,7 @@ describe('Test admin related eID settings', () => {
 
 		// Filling idp_cert_enc correctly and check next error message.
 		cy.get(`${prefix}form-manual-idp_cert_enc`).clear();
-		cy.get(
-			`${prefix}form-manual-idp_cert_enc`
-		).type(
+		cy.get(`${prefix}form-manual-idp_cert_enc`).type(
 			'MIIFlzCCA3+gAwIBAgIINK3wkhEt4oowDQYJKoZIhvcNAQELBQAwYzELMAkGA1UEBhMCREUxDzANBgNVBAgTBkJheWVybjERMA8GA1UEBxMITWljaGVsYXUxEzARBgNVBAoTCmVjc2VjIEdtYkgxGzAZBgNVBAMTElNrSURlbnRpdHkgU0FNTCBGUzAeFw0yMTEyMTMxMDAwMDBaFw0yNDAyMTMxMDAwMDBaMGMxCzAJBgNVBAYTAkRFMQ8wDQYDVQQIEwZCYXllcm4xETAPBgNVBAcTCE1pY2hlbGF1MRMwEQYDVQQKEwplY3NlYyBHbWJIMRswGQYDVQQDExJTa0lEZW50aXR5IFNBTUwgRlMwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCgSraq4/BaSD+8tPKKsez/Uk6FZ2c4cxSzjvcZptVPo7IH2cdLRKnlVfVgLPoeV+MOL/viu1y6IPp6aEJ09vl/7V0P5oEZ9BJ41K6DVsBb/puiFOC/Ma6Q53DbHbZQJJdGPmX1RH297e420iYs19zH7Y98X+ZTVOlOIxc26/yubc6XiMPvGzIv5BsHYzfyLFdapV/PTj21BDUmhas/H83zJP1IGdurJOt8/u7T1Mg2haLlU+Vp1xdeSaZgk+iesRyIB3Y774s6jqavxkit9PHk+Qq166sW2NOQLtb/BR/1aVK5rvvQqrZ0cLnk2jCFyDht4kZ7O6T5C0seQXDOGKHacv6neqfLu+4lWOTpZk/ANrbd8d2oG98k8lc5j2agVC7PjM0lTRoEMedTfG7J4q4mgSKhlL+YrRhIb/nYUSScn0EiAr32YSb5caboT3+eiqXnzAqVbH/wtwXIpbTkgQEwlk6A/TkDhv9+ssDv75k4PUKWmFjUKrC/TUQmC5k8TXvO40NX2cGOVimTavN1fSe1Pj1ytmQXRrbfrKiNwz+EbhAJHTdkEHh40XwjJh2jvwSSctvs3vpVIAtX4FPtHTOraBCZyyH0X/1vtKRruY2VzO8kAeU2Zb4NWE2STmFSXbIG9Pyci9eqdtd5nr3GaPj4g8BabcmMweOJRWwqm8F3fwIDAQABo08wTTAdBgNVHQ4EFgQUPSTV0I2z0mB0eJ/2JPvLPb4UVxswHwYDVR0jBBgwFoAUPSTV0I2z0mB0eJ/2JPvLPb4UVxswCwYDVR0PBAQDAgSQMA0GCSqGSIb3DQEBCwUAA4ICAQBWc4IQBece9ZXmkEe1SXGkg3ZqWNNJlkO4LuJOyDudLLPebjAM9JLBl1MY4Fnn9j2+ZeJHP9JRp4Igw49lGEI6KX/oGeDr+VfxHdRQ4mHs54JUKDcUef10xwlZ0sxX7bStNXtKOfMsaftwS/UfbjqawCQxXWMRONDMJVZXDE1ZrgvVC2/547AXJX93HtfTTPj8o3doEIF6IOBS9bjRZ6GUilzePsj3OaTbbGRHlGvxrBXmzZljF0wVmcBm6VneP0Ltap09Wwj2DI5n3PFGze4ufAj2UvkoJAlmOqnDKMcCMt8km9TkZtO1HtePCRj6n/FYWU33FB78gt1ZNrsYSWHAuco1irYUBg9wi6pJ/tJ4VwBk1astVrKTrJvMrvSIQeAzOhQ4DN+Rmv3CPvDshlrNxgC6HGvymSaOLRLX0gS0FbJmYgriXpy6AzSIkNqP4Fl9wT7MY0wYE3/bTuDO2Q/DcFif0AVn8AZHr9jM1H8SzzykkHgNvMQi1bHOv34WK6pYfuCD8/5f/OHf1LBADX5BHdu69vN9kc0LBdreLEysuqCTXTLov2h8osupsM1MDPrglm82PCJVcQ0zpwIBJiV7weDPqmibMqo7zDHRvFfrdqsfqVDdpwEex17kmqV+hYgufB4+uAr7E/crGd0YTv+SmySz1zxeoSZJn+f7cIfYFw==',
 			{ delay: 1 }
 		);
