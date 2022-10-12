@@ -1,6 +1,7 @@
 {
-  "baseUrl": "https://wordpress.p396.de",
-  "chromeWebSecurity": false,
-  "pageLoadTimeout": 20000,
-  "defaultCommandTimeout": 20000
+	"baseUrl": "https://wordpress.p396.de",
+	"watchForFileChanges": false,
+	"chromeWebSecurity": false,
+	"pageLoadTimeout": 20000,
+	"defaultCommandTimeout": 20000
 }
