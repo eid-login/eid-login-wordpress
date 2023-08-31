@@ -343,7 +343,7 @@ class Eidlogin_Admin {
 	 * @return string
 	 */
 	private function skidentity_url() : string {
-		$skidentity_url = 'https:// skidentity.com';
+		$skidentity_url = 'https://skidentity.com';
 		if ( strpos( strtolower( get_user_locale( get_current_user_id() ) ), 'de_de' ) !== false ) {
 			$skidentity_url = 'https://skidentity.de';
 		}
