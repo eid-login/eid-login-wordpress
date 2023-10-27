@@ -1,9 +1,9 @@
 === eID-Login ===
 Contributors: eidlogin
-Requires at least: 5.7
-Tested up to: 6.3
+Requires at least: 5.9
+Tested up to: 6.4
 Stable tag: 1.0.4
-Requires PHP: 7.3
+Requires PHP: 7.4
 License: AGPL
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
 Tags: authentication, security, eID
