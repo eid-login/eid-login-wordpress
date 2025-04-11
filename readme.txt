@@ -1,7 +1,7 @@
 === eID-Login ===
 Contributors: eidlogin
 Requires at least: 5.9
-Tested up to: 6.7
+Tested up to: 6.8
 Stable tag: 1.0.5
 Requires PHP: 7.4
 License: AGPL
